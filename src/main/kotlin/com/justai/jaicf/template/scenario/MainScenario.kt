@@ -55,7 +55,7 @@ object MainScenario : Scenario() {
             }
 
             action {
-                reactions.say("I have nothing to say yet...")
+                reactions.say("Ты попал по адресу")
             }
         }
     }
