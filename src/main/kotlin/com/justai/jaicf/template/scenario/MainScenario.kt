@@ -41,7 +41,8 @@ object MainScenario : Scenario() {
             }
             action {
                 var slot:String = ""
-                activator.caila?.run {slot = slots["view_type"].toString()}
+                reactions.say("перехожу" )
+                activator.caila?.run {slot = slots["views"].toString()}
                 reactions.aimybox?.response?.action = "change_view"
                 reactions.aimybox?.response?.intent = slot
 
