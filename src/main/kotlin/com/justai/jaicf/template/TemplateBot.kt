@@ -25,7 +25,8 @@ val accessToken: String = System.getenv("JAICP_ACCESS_TOKEN") ?: Properties().ap
 
 private val cailaNLUSettings = CailaNLUSettings(
     accessToken = accessToken,
-    confidenceThreshold = 0.2
+    confidenceThreshold = 0.2,
+    cailaUrl = "app.jaicp.com/cailapub/api/caila/p"
 )
 
 val templateBot = BotEngine(
