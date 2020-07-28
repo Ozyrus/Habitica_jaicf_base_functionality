@@ -13,7 +13,7 @@ val ktor = "1.3.1"
 
 // Main class to run application on heroku. Either PollingConnectionKt, or WebhookConnectionKt
 application {
-    mainClassName = "com.justai.jaicf.template.connections.WebhookConnectionKt"
+    mainClassName = "com.justai.jaicf.template.connections.AimyboxConnection"
 }
 
 repositories {
@@ -35,6 +35,7 @@ dependencies {
     implementation("com.justai.jaicf:caila:$jaicf")
     implementation("com.justai.jaicf:telegram:$jaicf")
     implementation("com.justai.jaicf:google-actions:$jaicf")
+    implementation("com.justai.jaicf:aimybox:$jaicf")
 
     implementation("io.ktor:ktor-server-netty:$ktor")
 }

@@ -1,5 +1,7 @@
 package com.justai.jaicf.template.scenario
 
+import com.justai.jaicf.activator.caila.caila
+import com.justai.jaicf.channel.aimybox.aimybox
 import com.justai.jaicf.model.scenario.Scenario
 
 object MainScenario : Scenario() {
@@ -29,6 +31,20 @@ object MainScenario : Scenario() {
 
             action {
                 reactions.say("See you soon!")
+            }
+        }
+
+
+        state("change_view") {
+            activators {
+                intent("change_view")
+            }
+            action {
+                var slot:String = ""
+                activator.caila?.run {slot = slots["view_type"].toString()}
+                reactions.aimybox?.response?.action = "change_view"
+                reactions.aimybox?.response?.intent = slot
+
             }
         }
 
