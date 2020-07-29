@@ -43,9 +43,23 @@ object MainScenario : Scenario() {
             }
             action {
                 var slot = ""
-                reactions.say("перехожу" )
+                reactions.say("Перехожу..." )
                 activator.caila?.run {slot = slots["views"].toString()}
                 reactions.aimybox?.response?.action = "change_view"
+                reactions.aimybox?.response?.intent = slot
+
+            }
+        }
+
+        state("create_task") {
+            activators {
+                intent("create_task")
+            }
+            action {
+                var slot = ""
+                reactions.say("Перехожу..." )
+                activator.caila?.run {slot = slots["tasks"].toString()}
+                reactions.aimybox?.response?.action = "create_task"
                 reactions.aimybox?.response?.intent = slot
 
             }
