@@ -64,11 +64,11 @@ object MainScenario : Scenario() {
                 var taskDifficulty:JsonLiteral? = null
                 reactions.say("Перехожу..." )
                 activator.caila?.run {
-                    taskType = slots["taskType"].toString()
+                    taskType = slots["task_type"].toString()
                     taskName = JsonLiteral(slots["1"].toString())
                     taskDescription = JsonLiteral(slots["2"].toString())
-                    taskSentiment = JsonLiteral(slots["taskSentiment"]?.toBoolean()!!)
-                    taskDifficulty = JsonLiteral(slots["taskDifficulty"].toString())
+                    taskSentiment = JsonLiteral(slots["sentiment"]?.toBoolean()!!)
+                    taskDifficulty = JsonLiteral(slots["difficulty"].toString())
                 }
                 reactions.aimybox?.response?.action = "createTask"
                 reactions.aimybox?.response?.intent = taskType
