@@ -18,25 +18,6 @@ object MainScenario : Scenario() {
                 reactions.say("So let's begin!")
             }
         }
-        state("Hello") {
-            activators {
-                intent("Hello")
-            }
-
-            action {
-                reactions.say("Hi there!")
-            }
-        }
-        state("Bye") {
-            activators {
-                intent("Bye")
-            }
-
-            action {
-                reactions.say("See you soon!")
-            }
-        }
-
 
         state("changeView") {
             activators {
