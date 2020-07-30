@@ -24,8 +24,8 @@ object MainScenario : Scenario() {
                 intent("changeView")
             }
             action {
-                var slot = ""
                 reactions.say("Перехожу..." )
+                var slot = ""
                 activator.caila?.run {slot = slots["views"].toString()}
                 reactions.aimybox?.response?.action = "changeView"
                 reactions.aimybox?.response?.intent = slot
@@ -66,7 +66,8 @@ object MainScenario : Scenario() {
             }
 
             action {
-                reactions.say("Ты попал по адресу")
+                reactions.say("Я вас не понял")
+                reactions.sayRandom("Перейди в настройки", "Перейди в инфо", "Создай сложную задачу с названием Обед и описанием Ресторан", "Создай награду пирожок")
             }
         }
     }
