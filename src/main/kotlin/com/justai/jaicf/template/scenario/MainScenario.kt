@@ -4,6 +4,7 @@ import com.justai.jaicf.activator.caila.caila
 import com.justai.jaicf.channel.aimybox.AimyboxEvent
 import com.justai.jaicf.channel.aimybox.aimybox
 import com.justai.jaicf.model.scenario.Scenario
+import kotlinx.serialization.json.*
 
 object MainScenario : Scenario() {
 
@@ -37,31 +38,44 @@ object MainScenario : Scenario() {
         }
 
 
-        state("change_view") {
+        state("changeView") {
             activators {
-                intent("change_view")
+                intent("changeView")
             }
             action {
                 var slot = ""
                 reactions.say("Перехожу..." )
                 activator.caila?.run {slot = slots["views"].toString()}
-                reactions.aimybox?.response?.action = "change_view"
+                reactions.aimybox?.response?.action = "changeView"
                 reactions.aimybox?.response?.intent = slot
 
             }
         }
 
-        state("create_task") {
+        state("createTask") {
             activators {
-                intent("create_task")
+                intent("createTask")
             }
             action {
-                var slot = ""
+                var taskType = ""
+                var taskName:JsonLiteral? = null
+                var taskDescription:JsonLiteral? = null
+                var taskSentiment:JsonLiteral? = null
+                var taskDifficulty:JsonLiteral? = null
                 reactions.say("Перехожу..." )
-                activator.caila?.run {slot = slots["tasks"].toString()}
-                reactions.aimybox?.response?.action = "create_task"
-                reactions.aimybox?.response?.intent = slot
-
+                activator.caila?.run {
+                    taskType = slots["taskType"].toString()
+                    taskName = JsonLiteral(slots["1"].toString())
+                    taskDescription = JsonLiteral(slots["2"].toString())
+                    taskSentiment = JsonLiteral(slots["taskSentiment"]?.toBoolean()!!)
+                    taskDifficulty = JsonLiteral(slots["taskDifficulty"].toString())
+                }
+                reactions.aimybox?.response?.action = "createTask"
+                reactions.aimybox?.response?.intent = taskType
+                reactions.aimybox?.response?.data?.put("taskName", taskName!!)
+                reactions.aimybox?.response?.data?.put("taskDescription", taskDescription!!)
+                reactions.aimybox?.response?.data?.put("taskSentiment", taskSentiment!!)
+                reactions.aimybox?.response?.data?.put("taskSentiment", taskDifficulty!!)
             }
         }
 
