@@ -75,7 +75,7 @@ object MainScenario : Scenario() {
                 reactions.aimybox?.response?.data?.put("taskName", taskName!!)
                 reactions.aimybox?.response?.data?.put("taskDescription", taskDescription!!)
                 reactions.aimybox?.response?.data?.put("taskSentiment", taskSentiment!!)
-                reactions.aimybox?.response?.data?.put("taskSentiment", taskDifficulty!!)
+                reactions.aimybox?.response?.data?.put("taskDifficulty", taskDifficulty!!)
             }
         }
 
