@@ -39,17 +39,17 @@ object MainScenario : Scenario() {
             }
             action {
                 var taskType = ""
-                var taskName:JsonLiteral? = null
-                var taskDescription:JsonLiteral? = null
-                var taskSentiment:JsonLiteral? = null
-                var taskDifficulty:JsonLiteral? = null
+                var taskName:JsonLiteral? = JsonLiteral("Название задачи")
+                var taskDescription:JsonLiteral? = JsonLiteral("Описание задачи")
+                var taskSentiment:JsonLiteral? = JsonLiteral(true)
+                var taskDifficulty:JsonLiteral? = JsonLiteral("easy")
                 reactions.say("Перехожу..." )
                 activator.caila?.run {
                     taskType = slots["task_type"].toString()
-                    taskName = JsonLiteral(slots["1"].toString())
-                    taskDescription = JsonLiteral(slots["2"].toString())
-                    taskSentiment = slots["sentiment"]?.toBoolean()?.let { JsonLiteral(it) }
-                    taskDifficulty = JsonLiteral(slots["difficulty"].toString())
+                    slots["1"]?.let {taskName = JsonLiteral(slots["1"].toString())}
+                    slots["2"]?.let {taskDescription = JsonLiteral(slots["2"].toString())}
+                    slots["sentiment"]?.let {taskSentiment = JsonLiteral(slots["sentiment"]?.toBoolean()!!)}
+                    slots["difficulty"]?. let {taskDifficulty = JsonLiteral(slots["difficulty"].toString())}
                 }
                 reactions.aimybox?.response?.action = "createTask"
                 reactions.aimybox?.response?.intent = taskType
