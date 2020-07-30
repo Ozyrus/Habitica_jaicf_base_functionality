@@ -67,15 +67,15 @@ object MainScenario : Scenario() {
                     taskType = slots["task_type"].toString()
                     taskName = JsonLiteral(slots["1"].toString())
                     taskDescription = JsonLiteral(slots["2"].toString())
-                    taskSentiment = JsonLiteral(slots["sentiment"]?.toBoolean()!!)
+                    taskSentiment = slots["sentiment"]?.toBoolean()?.let { JsonLiteral(it) }
                     taskDifficulty = JsonLiteral(slots["difficulty"].toString())
                 }
                 reactions.aimybox?.response?.action = "createTask"
                 reactions.aimybox?.response?.intent = taskType
-                reactions.aimybox?.response?.data?.put("taskName", taskName!!)
-                reactions.aimybox?.response?.data?.put("taskDescription", taskDescription!!)
-                reactions.aimybox?.response?.data?.put("taskSentiment", taskSentiment!!)
-                reactions.aimybox?.response?.data?.put("taskDifficulty", taskDifficulty!!)
+                taskName?.let { reactions.aimybox?.response?.data?.put("taskName", it) }
+                taskDescription?.let { reactions.aimybox?.response?.data?.put("taskDescription", it) }
+                taskSentiment?.let { reactions.aimybox?.response?.data?.put("taskSentiment", it) }
+                taskDifficulty?.let { reactions.aimybox?.response?.data?.put("taskDifficulty", it) }
             }
         }
 
